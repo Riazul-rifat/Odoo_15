@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="custom_purchase_requisition"
+              name="PO Requisition"
+              sequence="2"/>
+
+    <menuitem id="menu_create_REQ"
+         name="Create REQ"
+         parent="custom_purchase_requisition"
+         sequence="1"/>
+
+</odoo>

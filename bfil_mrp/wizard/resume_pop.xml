@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+     <record id="resume_schedule_form" model="ir.ui.view">
+         <field name="name">create.appointment.wizard.form</field>
+         <field name="model">resume.work.order.wizard</field>
+         <field name="arch" type="xml">
+            <form string="Schedule Resume">
+
+                <div>
+                <p> Do you want to schedule time to resume the operation? If yes put a tick in resume.</p>
+               </div>
+
+                <group>
+                    <field name="resume"/>
+                    <field name="resume_after" attrs="{'invisible': [('resume', '=', False)]}"/>
+                </group>
+                <footer>
+
+                    <button name="send_email" string="Confirm" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+         </field>
+     </record>
+
+    <record id="action_resume_schedule" model="ir.actions.act_window">
+        <field name="name">Resume Schedule</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">resume.work.order.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="bfil_mrp.resume_schedule_form"/>
+        <field name="target">new</field>
+    </record>
+
+    <record id="pause_button_inherited"  model="ir.ui.view" >
+        <field name="name">mrp.workorder.inherited</field>
+            <field name="model">mrp.workorder</field>
+            <field name="inherit_id" ref="mrp.mrp_production_workorder_tree_editable_view"/>
+            <field name="arch" type="xml">
+                 <xpath expr="//button[@name='button_pending']" position="replace">
+                    <button name="%(bfil_mrp.action_resume_schedule)d" type="action" string="Pause" class="btn-warning"
+                  attrs="{'invisible': ['|', '|', ('production_state', 'in', ('draft', 'done', 'cancel')), ('working_state', '=', 'blocked'), ('is_user_working', '=', False)]}"/>
+                </xpath>
+
+                <xpath expr="//field[@name='state']" position="after" >
+                            <field name="resume_time"
+                                    attrs="{'invisible': ['|', '|', '|', ('production_state','in', ('draft', 'done', 'cancel')), ('working_state', '=', 'blocked'), ('state', '=', 'done'), ('is_user_working', '!=', False)]}"/>
+                </xpath>
+            </field>
+    </record>
+
+    <record id="pause_button_inherited_form"  model="ir.ui.view" >
+        <field name="name">mrp.workorder.inherited</field>
+            <field name="model">mrp.workorder</field>
+            <field name="inherit_id" ref="mrp_workorder.mrp_workorder_view_form_tablet"/>
+            <field name="arch" type="xml">
+                 <xpath expr="//button[@name='button_pending']" position="replace">
+                    <button name="%(bfil_mrp.action_resume_schedule)d" type="action" string="Pause" class="btn-warning"
+                    attrs="{'invisible': ['|', ('is_user_working', '=', False), ('working_state', '=', 'blocked')]}" />
+                </xpath>
+
+<!--                <xpath expr="//field[@name='state']" position="after" >-->
+<!--                            <field name="resume_time"-->
+<!--                                    attrs="{'invisible': ['|', '|', '|', ('production_state','in', ('draft', 'done', 'cancel')), ('working_state', '=', 'blocked'), ('state', '=', 'done'), ('is_user_working', '!=', False)]}"/>-->
+<!--                </xpath>-->
+            </field>
+    </record>
+
+
+</odoo>

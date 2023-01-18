@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<!-- Tree View  -->
+
+    <record id="Ineligible_product_tree_view" model="ir.ui.view">
+        <field name="name">ineligible.product.tree.view</field>
+        <field name="model">ineligible.product.list</field>
+        <field name="arch" type="xml">
+            <tree>
+
+                    <field name="name"/>
+                    <field name="company_id"/>
+
+            </tree>
+        </field>
+    </record>
+
+<!--     Form View     -->
+    <record id="ineligible_product_form_view" model="ir.ui.view">
+        <field name="name">ineligible.product.form.view</field>
+        <field name="model">ineligible.product.list</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="state" widget="statusbar"  options="{'clickable' : '1'}" statusbar_visible="draft, approve"/>
+                     <button name='confirmation' string='Confirm' type='object' class="oe_highlight" states="draft"/>
+                </header>
+                <sheet>
+
+                    <group>
+                        <field name="name" readonly="1"/>
+                        <field name="company_id"/>
+                    </group>
+
+
+                    <notebook>
+
+                            <page string="Damaged Products">
+                                <field name="product_lines" attrs="{'readonly' : [('state', '==', 'confirm')]}">
+                                    <tree string="Damaged Products" editable="bottom">
+                                        <field name="serial" />
+                                        <field name="product_id"/>
+                                        <field name="product_quantity"/>
+                                        <field name="product_uom" />
+                                        <field name="actual_price" />
+                                        <field name="proposed_price" />
+                                        <field name="reason" />
+                                    </tree>
+                                </field>
+                            </page>
+
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+<!--    Create menu action   -->
+
+    <record id="action_ineligible_product" model="ir.actions.act_window">
+        <field name="name">Ineligible Product</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">ineligible.product.list</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html"><p class="o_view_nocontent_smiling_face">CREATE -_-</p></field>
+    </record>
+
+<!--    Create Menu  -->
+    <menuitem id="Ineligible_Product"
+          name="Ineligible Product"
+          action="action_ineligible_product"
+          sequence="0"/>
+</odoo>

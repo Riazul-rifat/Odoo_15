@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!--    To create PDF View    -->
+    <record id="report_custom_purchase_requisition" model="ir.actions.report">
+        <field name="name">PO_REQUISITION_Report</field>
+        <field name="model">custom.purchase.requisition</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">om_requisition.template_custom_purchase_requisition</field>
+        <field name="report_file">om_requisition.template_custom_purchase_requisition</field>
+        <field name="binding_model_id" ref = "model_custom_purchase_requisition"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

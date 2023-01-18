@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+    <template id = 'template_custom_purchase_requisition'>
+        <t t-foreach="docs" t-as="data">
+            <t t-call = "web.basic_layout">
+                <div class="page">
+                    <div class="structure">
+                        <div class="row">
+                            <div class="col-xs-8">
+                                <h1 class="text-center">Report of a purchase requisition</h1>
+                                <br>
+
+                                </br>
+                                <br>
+
+                                </br>
+                                <table class="table table-condensed" style="border: 3px solid black !important;">
+                                    <tr>
+                                        <td colspan="4" class="text-center" width="30%">
+                                            <span>"Custom Purchase Requisition"</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span>
+                                                <strong> POR Sequence </strong>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span>--------->></span>
+                                        </td>
+                                        <td>
+                                            <span t-field="data.name"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span>
+                                                <strong> PO Reference </strong>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span>--------->></span>
+                                        </td>
+                                        <td>
+                                            <span t-field="data.po_reference"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span>
+                                                <strong> WareHouse  </strong>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span>--------->></span>
+                                        </td>
+                                        <td>
+                                            <span t-field="data.warehouse_id"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span>
+                                                <strong> Vendor </strong>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span>--------->></span>
+                                        </td>
+                                        <td>
+                                            <span t-field="data.partner_id"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span>
+                                                <strong> Delivery Date </strong>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span>--------->></span>
+                                        </td>
+                                        <td>
+                                            <span t-field="data.delivery_date"/>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td colspan="4" class="text-center" width="30%">
+                                            <span>"Products"</span>
+                                        </td>
+                                    </tr>
+
+                                    <tr class="text-center">
+                                        <td  width="50%"  class="text-center">
+                                            <span>"Product Name"</span>
+                                        </td>
+
+                                        <td  width="50%"  class="text-center">
+                                            <span>"Product Quantity"</span>
+                                        </td>
+
+                                    </tr>
+
+                                    <t t-foreach="data.requisition_orders" t-as="product">
+
+                                            <tr>
+                                                <td class="text-center">
+                                                    <span t-field="product.product_id"/>
+                                                </td>
+
+                                                <td class="text-center">
+                                                    <span t-field="product.product_quantity"/>
+                                                </td>
+                                        </tr>
+                                    </t>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </t>
+
+    </template>
+</odoo>

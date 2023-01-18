@@ -1,0 +1,1 @@
+from . import inept_product

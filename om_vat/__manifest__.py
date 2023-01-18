@@ -1,0 +1,17 @@
+{
+    'name' : 'Unused product disposal',
+    'version' : '1.0.0',
+    'author' : 'rifat',
+    'category' : 'Product_disposal',
+    'sequence' : 1,
+    'summary' : 'VAT',
+    'description' : 'Dispose unused product',
+    'depends' : ['base', 'stock'],
+    'data' : ['views/damage_product.xml',
+              'data/sequence.xml',],
+    'demo' : [],
+    'installable' : True,
+    'application': True,
+    'auto_install' : False,
+    'asset' : {},
+}

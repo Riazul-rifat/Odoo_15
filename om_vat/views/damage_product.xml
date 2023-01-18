@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+                           <!--           Tree view              -->
+        <record id="view_Damaged_Product_tree" model="ir.ui.view">
+        <field name="name">product.damage.tree</field>
+        <field name="model">product.damage</field>
+        <field name="arch" type="xml">
+            <tree>
+<!--                    <field name="product_id"/>-->
+                    <field name="name"/>
+                    <field name="product_id"/>
+                    <field name="company_id"/>
+
+            </tree>
+        </field>
+        </record>
+                                <!--    Form view -->
+    <record id="view_Damaged_Product_form" model="ir.ui.view">
+        <field name="name">product.damage.form</field>
+        <field name="model">product.damage</field>
+        <field name="arch" type="xml">
+            <form>
+
+                 <header>
+                    <field name="state" widget="statusbar" nolabel="1" options="{'clickable' : '1'}" statusbar_visible="draft, confirm"/>
+                    <button name='confirmation'  string='Confirm' type='object' class="oe_highlight" states="draft"/>
+
+                </header>
+
+                <sheet>
+                    <group>
+
+                            <group>
+                                <field name="name" readonly="1"/>
+                                <field name="product_id" attrs="{'readonly' : [('state', '==', 'confirm')]}"/>
+                                <field name="company_id" attrs="{'readonly' : [('state', '==', 'confirm')]}"/>
+                            </group>
+                    </group>
+                    <notebook>
+
+                            <page string="Products">
+                                <field name="damage_lines" attrs="{'readonly' : [('state', '==', 'confirm')]}">
+                                    <tree string="Damaged Products" editable="bottom">
+
+                                            <field name="serial_id" />
+                                            <field name="challan" />
+                                            <field name="quantity"/>
+                                            <field name="price" />
+                                            <field name="vat" />
+                                            <field name="proposed_price"/>
+                                            <field name="reason"/>
+
+
+                                    </tree>
+                                </field>
+                            </page>
+
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+                                                <!--    Menu action  -->
+    <record id="action_product_damage" model="ir.actions.act_window">
+        <field name="name">Damaged Product</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.damage</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create -_--_-
+            </p>
+        </field>
+    </record>
+
+                          <!-- Menu -->
+    <menuitem id="product_damage"
+              name="Damaged Product"
+              action="action_product_damage"
+              sequence="0"/>
+
+</odoo>

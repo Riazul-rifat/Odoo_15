@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <data >
+        <record id="without_resume_email_template" model="mail.template">
+            <field name="name">Resume Operation</field>
+            <field name="model_id" ref="mrp.model_mrp_workorder"/>
+<!--            <field name="model_id" ref="mrp.model_mrp_production"/>-->
+            <field name="subject">Operation resume information</field>
+            <field name="email_to">{{ object.workcenter_id.user_id.email}}</field>
+            <field name="body_html" type="html">
+                    <div style="margin: 0px; padding: 0px;">
+                        <p style="margin: 0px; padding: 0px; font-size: 13px;">
+
+                            Dear <t t-out="object.workcenter_id.user_id.name or ''">Responsible Person</t>
+                            the operation <strong t-out="object.name or ''"> ' ' </strong> in  the workcenter  <strong t-out="object.workcenter_id.name or ''"> ' ' </strong>
+                            for the manufacturing order  <strong t-out="object.production_id.name or ''"> ' ' </strong>
+                            is paused .
+
+                            <br/><br/>
+                            Thank you
+                            <br/><br/>
+                            Best regards,
+                        </p>
+                    </div>
+            </field>
+        </record>
+
+    </data>
+
+</odoo>
