@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
+                                <!-- Server action to send email -->
         <record id="action_send_email" model="ir.actions.server">
             <field name="name">Send Email</field>
             <field name="model_id" ref="model_purchase_order"/>
@@ -8,6 +8,48 @@
             <field name="state">email</field>
             <field name="template_id" ref="purchase_email_template"/>
         </record>
+
+                                   <!--    Kanban view    -->
+
+    <record id="view_PO_Requisition_kanban" model="ir.ui.view">
+        <field name="name">custom.purchase.requisition.view</field>
+        <field name="model">custom.purchase.requisition</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="name"/>
+                <field name="warehouse_id"/>
+                <field name="partner_id"/>
+                <field name="delivery_date"/>
+                <field name="state"/>
+
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_global_click">
+                            <div class="oe_kanban_global_click">
+                                <ul>
+                                    <li>
+                                        Name -- <field name="name"/>
+                                    </li>
+                                    <li>
+                                        Warehouse -- <field name="warehouse_id"/>
+                                    </li>
+                                    <li>
+                                        Company -- <field name="partner_id"/>
+                                    </li>
+                                    <li>
+                                        Delivery date --  <field name="delivery_date"/>
+                                    </li>
+                                    <li>
+                                        Status -- <field name="state"/>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
 
                            <!--           Tree view              -->
         <record id="view_PO_Requisition_tree" model="ir.ui.view">
@@ -74,7 +116,7 @@
         <field name="name">PO REQUISITION</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">custom.purchase.requisition</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">tree,kanban,form</field>
         <field name="context">{}</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
