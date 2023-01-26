@@ -1,18 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-        <record id="mrp_workcenter_view_inherited" model="ir.ui.view">
-            <field name="name">mrp.workcenter.inherited</field>
-            <field name="model">mrp.workcenter</field>
-            <field name="inherit_id" ref="mrp.mrp_workcenter_view"/>
-            <field name="arch" type="xml">
-                <xpath expr="//field[@name='code']" position="after">
-                            <field name="user_id"/>
-                </xpath>
+    <record id="mrp_workcenter_view_inherited" model="ir.ui.view">
+        <field name="name">mrp.workcenter.inherited</field>
+        <field name="model">mrp.workcenter</field>
+        <field name="inherit_id" ref="mrp.mrp_workcenter_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='code']" position="after">
+                <field name="user_id"/>
+            </xpath>
 
+            <xpath expr="//notebook" position="inside">
+                <page string="Cost per minute" name="general_info">
+                    <group>
+                        <group string="Cost Info" name="Cost Information">
+                            <field name="total_prod_capacity"/>
+                            <field name="rental_cost"/>
+                            <field name="labor_cost"/>
+                            <field name="common_area_cost"/>
+                        </group>
 
-            </field>
-        </record>
+                        <group string="Total cost" name="Cost Per Minute">
+                            <field name="cost_per_min"/>
+
+                        </group>
+                    </group>
+                </page>
+
+            </xpath>
+
+        </field>
+    </record>
 
 
 </odoo>

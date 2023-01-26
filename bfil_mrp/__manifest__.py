@@ -1,6 +1,6 @@
 {
     'name' : 'CUSTOM_MRP',
-    'version' : '1.0.0',
+    'version' : '1.0.1',
     'author' : 'rifat',
     'category' : 'Pause Pop Up',
     'sequence' : 1,
@@ -12,6 +12,7 @@
         'data/resume_email_template.xml',
         'data/without_resume_email_template.xml',
         'views/work_center.xml',
+        'views/mrp_routing_workcenter_views_inherited.xml',
         'wizard/resume_pop.xml',
     ],
     'demo' : [],

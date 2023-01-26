@@ -7,10 +7,6 @@
          <field name="arch" type="xml">
             <form string="Schedule Resume">
 
-                <div>
-                <p> Do you want to schedule time to resume the operation? If yes put a tick in resume.</p>
-               </div>
-
                 <group>
                     <field name="resume"/>
                     <field name="resume_after" attrs="{'invisible': [('resume', '=', False)]}"/>

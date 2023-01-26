@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="mrp_routing_workcenter_view_inherited" model="ir.ui.view">
+        <field name="name">mrp.routing.workcenter.inherited</field>
+        <field name="model">mrp.routing.workcenter</field>
+        <field name="inherit_id" ref="mrp.mrp_routing_workcenter_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='time_cycle']" position="after">
+                <field name="wc_cost_per_minute"/>
+                <field name="cost"/>
+            </xpath>
+        </field>
+    </record>
+
+
+</odoo>

@@ -11,16 +11,16 @@
                     <div style="margin: 0px; padding: 0px;">
                         <p style="margin: 0px; padding: 0px; font-size: 13px;">
 
-                            Dear <t t-out="object.workcenter_id.user_id.name or ''">Responsible Person</t>
+                            Dear <t t-out="object.workcenter_id.user_id.name or ''">Responsible Person</t> ,
                             the operation <strong t-out="object.name or ''"> ' ' </strong> in  the workcenter  <strong t-out="object.workcenter_id.name or ''"> ' ' </strong>
                             for the manufacturing order  <strong t-out="object.production_id.name or ''"> ' ' </strong>
                             is paused temporarily. It will resume again at <t  t-out="ctx.get('resume_date')"/> .
 
 
                             <br/><br/>
-                            Thank you
+                            Thank you.
                             <br/><br/>
-                            Best regards,
+                            Best regards.
                         </p>
                     </div>
             </field>
